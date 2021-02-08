@@ -1,0 +1,11 @@
+.centered {
+    position: fixed;
+    width:20vw;
+    /* height: 52vh; */
+    top: 25%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    border: 1px solid black;
+    padding: 10px;
+  }

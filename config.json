@@ -11,5 +11,17 @@
         "service": "gmail",
         "user"   : "epaycochallenge@gmail.com",
         "pass"   : "epayco12"
+    },
+    "API_URLS": {
+        "SOAP": {
+            "user_service"   : "http://localhost:3000/soap/user",
+            "payment_service": "http://localhost:3000/soap/payment"
+        },
+        "REST": "http://localhost:3000/rest",
+        "WEB" : "http://localhost:3000/ui"
+    },
+    "webserver": {
+        "port"       : 3000,
+        "socket_port": 9999
     }
 }
