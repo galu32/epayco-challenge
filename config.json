@@ -1,0 +1,15 @@
+{
+    "database": {
+        "host"   : "localhost",
+        "port"   : 3306,
+        "user"   : "fran",
+        "pass"   : "fran",
+        "db"     : "epayco",
+        "test_db": "epayco_test"
+    },
+    "mailing": {
+        "service": "gmail",
+        "user"   : "epaycochallenge@gmail.com",
+        "pass"   : "epayco12"
+    }
+}

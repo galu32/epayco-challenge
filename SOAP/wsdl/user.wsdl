@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+
+<wsdl:definitions name="User"
+             targetNamespace="http://example.com/user.wsdl"
+             xmlns:tns="http://example.com/user.wsdl"
+             xmlns:xsd1="http://example.com/user.xsd"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+       <xsd:schema targetNamespace="http://example.com/user.xsd" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+           <xsd:element name="UserRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Email" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UserRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="DocNr" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UserRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Name" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UserRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Lastname" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UserRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Phone" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UserResponse">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UpdateBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Balance" type="value"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UpdateBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Type" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UpdateBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="DocNr" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UpdateBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Phone" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="UpdateBalanceResponse">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="GetBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Phone" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="GetBalanceRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="DocNr" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="GetBalanceResponse">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+       </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="RegisterUserInput">
+        <wsdl:part name="body" element="xsd1:UserRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="RegisterUserOutput">
+        <wsdl:part name="body" element="xsd1:UserResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="UpdateBalanceInput">
+        <wsdl:part name="body" element="xsd1:UpdateBalanceRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="UpdateBalanceOutput">
+        <wsdl:part name="body" element="xsd1:UpdateBalanceResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="GetBalanceInput">
+        <wsdl:part name="body" element="xsd1:GetBalanceRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="GetBalanceOutput">
+        <wsdl:part name="body" element="xsd1:GetBalanceResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="UserPortType">
+
+        <wsdl:operation name="RegisterUser">
+           <wsdl:input message="tns:RegisterUserInput"/>
+           <wsdl:output message="tns:RegisterUserOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="UpdateBalance">
+           <wsdl:input message="tns:UpdateBalanceInput"/>
+           <wsdl:output message="tns:UpdateBalanceOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="GetBalance">
+           <wsdl:input message="tns:GetBalanceInput"/>
+           <wsdl:output message="tns:GetBalanceOutput"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="UserSoapBinding" type="tns:UserPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="RegisterUser">
+           <soap:operation soapAction="http://example.com/soap/RegisterUser"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="UpdateBalance">
+           <soap:operation soapAction="http://example.com/soap/UpdateBalance"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="GetBalance">
+           <soap:operation soapAction="http://example.com/soap/GetBalance"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+
+    <wsdl:service name="UserService">
+        <wsdl:port name="UserPort" binding="tns:UserSoapBinding">
+           <soap:address location="http://localhost:3000/soap/user"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

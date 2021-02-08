@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+
+<wsdl:definitions name="Payment"
+             targetNamespace="http://example.com/payment.wsdl"
+             xmlns:tns="http://example.com/payment.wsdl"
+             xmlns:xsd1="http://example.com/payment.xsd"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+       <xsd:schema targetNamespace="http://example.com/payment.xsd" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+           <xsd:element name="GenTokenRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Phone" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="GenTokenRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="DocNr" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="GenTokenResponse">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="ValidTokenRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="DocNr" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="ValidTokenRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Token" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="ValidTokenRequest">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="Id" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="ValidTokenResponse">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+       </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GenTokenInput">
+        <wsdl:part name="body" element="xsd1:GenTokenRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="GenTokenOutput">
+        <wsdl:part name="body" element="xsd1:GenTokenResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ValidTokenInput">
+        <wsdl:part name="body" element="xsd1:ValidTokenRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ValidTokenOutput">
+        <wsdl:part name="body" element="xsd1:ValidTokenResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="PaymentPortType">
+
+        <wsdl:operation name="GenToken">
+           <wsdl:input message="tns:GenTokenInput"/>
+           <wsdl:output message="tns:GenTokenOutput"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="ValidToken">
+           <wsdl:input message="tns:ValidTokenInput"/>
+           <wsdl:output message="tns:ValidTokenOutput"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="PaymentSoapBinding" type="tns:PaymentPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="GenToken">
+           <soap:operation soapAction="http://example.com/soap/payment/GenToken"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ValidToken">
+           <soap:operation soapAction="http://example.com/soap/payment/ValidToken"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+
+    <wsdl:service name="PaymentService">
+        <wsdl:port name="PaymentPort" binding="tns:PaymentSoapBinding">
+           <soap:address location="http://localhost:3000/soap/payment"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
